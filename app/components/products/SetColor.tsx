@@ -8,7 +8,7 @@ import {
 interface SetColorProps {
   images: SelectedImgType[];
   cartProduct: CartProductType;
-  handColorSelect: (value: SelectedImgType) => void;
+  handleColorSelect: (value: SelectedImgType) => void;
 }
 
 const SetColor: React.FC<SetColorProps> = ({
