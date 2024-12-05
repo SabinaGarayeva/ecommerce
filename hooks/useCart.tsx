@@ -10,7 +10,7 @@ interface Props {
   [propName: string]: any;
 }
 
-export const CartContextProvide = (props: Props) => {
+export const CartContextProvider = (props: Props) => {
   const [cartTotalQty, setCartTotalQty] = useState(0);
 
   const value = {
