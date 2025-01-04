@@ -72,16 +72,24 @@ export const CartContextProvider = (props: Props) => {
 
   const handleAddProductToCart = useCallback((product: CartProductType) => {
     setCartProducts((prev) => {
-      let updatedCart;
+      const updatedCart = prev
+        ? prev.some((item) => item.id === product.id)
+          ? prev.map((item) =>
+              item.id === product.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            )
+          : [...prev, product]
+        : [product];
 
-      if (prev) {
-        updatedCart = [...prev, product];
-      } else {
-        updatedCart = [product];
-      }
-
-      toast.success("Product added to cart");
+      // Update localStorage
       localStorage.setItem("eShopCartItems", JSON.stringify(updatedCart));
+
+      // Use unique toast
+      toast.success("Product added to cart", {
+        id: `add-to-cart-${product.id}`,
+      });
+
       return updatedCart;
     });
   }, []);
