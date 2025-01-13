@@ -31,14 +31,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 
   const router = useRouter();
 
-
-  useEffect(()=> {
-    if(currentUser) {
+  useEffect(() => {
+    if (currentUser) {
       router.push("/cart");
       router.refresh();
-    
     }
-  }, [])
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -65,12 +63,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 
   return (
     <>
-      <Heading title="Sun in for Gizmo Galaxy" />
+      <Heading title="Sign in for Gizmo Galaxy" />
       <Button
         outline
         label="Continue up with Google"
         icon={AiOutlineGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <hr className="g-slate-400 w-full h-px" />
       <Input
