@@ -19,6 +19,7 @@ const CheckoutClient = () => {
 
   useEffect(() => {
     //create a paymentIntent as soon as the page loads
+   if (cartProducts) {
     setLoading(true);
     setError(false);
     fetch("/api/create-payment-intent", {
@@ -45,12 +46,11 @@ const CheckoutClient = () => {
         console.log("Error", error);
         toast.error("Something went wrong");
       });
+   }
   }, [cartProducts, paymentIntent]);
 
   return (
-    <>
-      <Checkout />
-    </>
+   <>Checkout</>
   );
 };
 
