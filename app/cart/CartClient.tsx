@@ -7,8 +7,13 @@ import Heading from "../components/Heading";
 import Button from "../components/Button";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/utils/formatPrice";
+import { SafeUser } from "@/types";
 
-const CartClient = () => {
+interface CartClient {
+  currentUser: SafeUser | null;
+}
+
+const CartClient: React.FC = ({ currentUser }) => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
 
   if (!cartProducts || cartProducts.length === 0) {
